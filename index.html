@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de PDA - Ejercicio 3</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head> 
+<body>
+    <header id="input-section_">
+        <h1>Simulador de Autómata de Pila (PDA)</h1>
+        <h2>Lenguaje: L = {a^n b^m x y^* c^m a^n | n>=2, m>=1}</h2>
+        <p>Este Autómata de Pila está diseñado para reconocer el lenguaje L = {a^n b^m x y^* c^m a^n | n>=2, m>=1} al pasar por cinco estados secuenciales, utilizando la pila.</p>
+        <p></p>
+    </header>
+
+    <main>
+        <section id="input-section">
+    
+            <div class="head">
+                <label for="inputString">Ingresa una cadena:</label>
+                <input type="text" id="inputString" placeholder="Ej: aabxcaa">
+               <!---- <span style="margin-right:8px;">Ejemplos:</span>
+                <button type="button" class="exampleChain" data-chain="aabxcaa">Mínimo: aabxcaa</button>
+                <button type="button" class="exampleChain" data-chain="aabbxyyccaaa">Promedio: aabbxyyccaaa</button> -->
+            </div>
+        
+            <div class="botones">
+                <button  id="startButton">Iniciar Simulación</button>
+                <button id="stepButton" disabled>Siguiente Paso</button>
+                <button id="resetButton" disabled>Reiniciar</button>
+            </div>
+        
+            <div id="result" class="message"></div>
+        </section>
+
+        <section id="pda-visualization">
+            <h3>Grafo del Autómata de Pila</h3>
+            <div id="pdaGraph" class="graph-container"></div>
+
+            <div class="menu-opciones">
+                <a href="#formal-description" class="active">Descripción Formal</a>
+                <a href="#transition-table" class="active">Tabla de Transición</a>
+                <a href="#instantaneous-description" class="active">Descripción Instantánea (Recorrido)</a>
+                <a href="#instantaneous-descriptionID" class="active">Descripción Instantánea ID</a>
+                <a href="#derivacionesid" class="active">Prueba de Derivaciones</a>
+            </div>
+            <div id="currentStepInfo">
+                <p>Estado Actual: <span id="currentState">q0</span></p>
+                <p>Entrada Restante: <span id="remainingInput"></span></p>
+                <p>Pila: <span id="currentStack"></span></p>
+            </div>
+        </section>
+
+        <section id="formal-description">
+            <h3>Descripción Formal del PDA</h3>
+            <pre id="formalDescContent"></pre>
+            <a href="#input-section_" class="active">Inicio</a>
+        </section>
+
+        <section id="transition-table">
+            <h3>Tabla de Transición</h3>
+            <table id="transitionTableContent">
+                <thead>
+                    <tr>
+                        <th>Estado Actual</th>
+                        <th>Entrada</th>
+                        <th>Cima de Pila</th>
+                        <th>Estado Siguiente</th>
+                        <th>Sustitución en Pila</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+            <a href="#input-section_" class="active">Inicio</a>
+        </section>
+        
+        <section id="instantaneous-description">
+            <h3>Descripción Instantánea (Recorrido)</h3>
+            <div id="diLogContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paso</th>
+                            <th>Estado</th>
+                            <th>Entrada Restante</th>
+                            <th>Pila</th>
+                            <th>Transición Aplicada</th>
+                        </tr>
+                    </thead>
+                    <tbody id="diLog">
+                        </tbody>
+                </table>
+            </div>
+            <a href="#input-section_" class="active">Inicio</a>  
+        </section>
+
+        <section id="instantaneous-descriptionID">
+            <div style="margin-top: 10px;">
+               <button id="generateIdsButton"> IDs del PDA</button>
+            </div>
+            <div id="pdaIdsResult" class="output-box mt-3" style="margin-top:10px;"></div>
+            <a href="#input-section_" class="active">Inicio</a>
+        </section>
+
+    <section id="derivacionesid">
+    <h2>Prueba de Derivaciones izquierda o derecha</h2> 
+    
+    <div style="margin-bottom: 8px;">
+        <label style="margin-right:8px;">
+            <input type="radio" name="derivationStrategy" value="left" checked>
+            Derivación izquierda
+        </label>
+        <label>
+            <input type="radio" name="derivationStrategy" value="right">
+            Derivación derecha
+        </label>
+
+    </div>
+
+    <button id="deriveButton" class="btn btn-primary">
+        Generar 
+    </button>
+
+     <a href="#input-section_" class="active">Inicio</a>
+    
+    <div id="derivationResult" class="output-box mt-3" style="min-height: 450px; padding: 0;">
+        <p>Aquí se mostrará la secuencia de pasos de la derivación de la cadena.</p>
+        
+        </div>
+
+    </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Iván Alexander</p>
+    </footer>
+
+    <!-- Librería MathJax para renderizar LaTeX -->
+<script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
