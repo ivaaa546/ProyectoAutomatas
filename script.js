@@ -87,7 +87,7 @@ let graphEdges = new vis.DataSet();
 
 // 3. Descipcion formal
 function generateFormalDescription() {
-    let desc = `P = (Q, Σ, Γ, δ, q0, q4, Z)\n\n`;
+    let desc = `M = (Q, Σ, Γ, δ, q0, q4, Z)\n\n`;
     desc += `Q = {${PDA.Q.join(', ')}}\n`;
     desc += `Σ = {${PDA.Sigma.join(', ')}}\n`;
     desc += `Γ = {${PDA.Gamma.join(', ')}}\n`;
